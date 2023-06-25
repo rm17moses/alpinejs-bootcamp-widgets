@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AlpineJS widgets for Bootcamp functions</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script src="//unpkg.com/alpinejs" defer></script>
+    <script src="greet.js"></script>
+    <script src="transportFee.js"></script>
+    <script src="totalPhoneBill.js"></script>
+    <script src="enoughAirtime.js"></script>
+</head>
+<body class="container p-4 col-sm bg-info text-dark p-3" style="--bs-bg-opacity: .03;">
+    <div x-data="{
+        greet: greet,
+        transportFee: transportFee,
+        totalPhoneBill: totalPhoneBill,
+        enoughAirtime: enoughAirtime
+    }">
+        <!-- Greet Function -->
+        <div x-data="{ show: false }">
+            <h1>Greet Function</h1>
+            <hr>
+            <button class="btn btn-outline-danger fw-bold" @click="show = !show">
+                <i class="bi bi-chat-fill"></i>
+            </button>
+            <div x-show="show">
+                <div class="bg-success text-white ps-3 rounded">
+                    <div class="d-flex mt-3 pt-2">
+                        <b class="me-3">English:</b>
+                        <p x-text="greet('Moses', 'English')"></p>
+                    </div>
+                    <div class="d-flex">
+                        <b class="me-3">SeSotho:</b>
+                        <p x-text="greet('Moses', 'SeSotho')"></p>
+                    </div>
+                    <div class="d-flex">
+                        <b class="me-3">Spanish:</b>
+                        <p x-text="greet('Moses', 'Spanish')"></p>
+                    </div>
+                    <div class="d-flex">
+                        <b class="me-3">IsiZulu:</b>
+                        <p x-text="greet('Moses', 'IsiZulu')"></p>
+                    </div>
+                    <div class="d-flex">
+                        <b class="me-3">French:</b>
+                        <p x-text="greet('Moses', 'French')"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Transport Fee Function -->
+        <div class="mt-4 mb-4">
+            <div x-data="{ shifts: '', show: false }">
+                <h1>Transport Fee Function</h1>
+                <hr>
+                <p class="me-3">
+                    <input type="radio" name="shift" value="morning" x-model="shifts" @click="show = !show">
+                    Morning Shift
+                </p>
+                <p class="mt-0 fw-bold bg-danger text-white p-2 rounded" x-show="shifts === 'morning'">
+                    Your transport cost is R20
+                </p>
+
+                <p class="me-3">
+                    <input type="radio" name="shift" value="afternoon" x-model="shifts">
+                    Afternoon Shift
+                </p>
+                <p class="mt-0 fw-bold bg-warning p-2 rounded" x-show="shifts === 'afternoon'">
+                    Your transport cost is R10: Your work provides transport back home
+                </p>
+
+                <p class="me-3">
+                    <input type="radio" name="shift" value="nightshift" x-model="shifts">
+                    Night Shift
+                </p>
+                <p class="mt-0 fw-bold bg-success text-white p-2 rounded" x-show="shifts === 'nightshift'">
+                    Your transport cost is Free: Your work provides transport from and to work
+                </p>
+            </div>
+        </div>
+
+        <!-- Total Phone Bill Function -->
+        <div class="mb-4">
+            <div x-data="{ callSMS: '', totalCost: '', show: false }">
+                <h1>Total Phone Bill Function</h1>
+                <p>Input: <mark><em><u><b>calls, sms </u></mark></b></em></p>
+                <hr>
+                <div class="input-group mb-3">
+                    <span class="input-group-text fw-bold bg-success-subtle">Phone usage:</span>
+                    <input class="p-1 rounded form-control" style="width: 20%;" type="text" x-model="callSMS">
+                </div>
+                <div class="d-flex">
+                    <p>
+                        <button class="btn btn-outline-primary rounded fw-bold me-3" @click="totalPhoneBill(); show = !show">Show Phone Bill</button>
+                    </p>
+                    <div x-show="show">
+                        <p class="fw-bold bg-danger text-white pb-2 pt-2 pe-5 ps-5 rounded" x-text="totalCost"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The enough airtime Function -->
+        <div x-data="{ cost: '', airtime: '', projectedAirtime: '', show: false }">
+            <h1>Enough Airtime Function</h1>
+            <p>Input projected airtime use and current airtime balance</p>
+            <p>Input: <mark><em><u><b>calls, sms, data </u></mark></b></em></p>
+            <hr>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold bg-success-subtle">Projected usage:</span>
+                <input class="p-1 rounded form-control" type="text" x-model="cost">
+            </div>
+            <div class="input-group mb-3">
+                <span class="input-group-text fw-bold bg-success-subtle">R</span>
+                <input class="p-1 rounded form-control " type="text" placeholder="Current airtime balance" x-model.number="airtime">
+            </div>
+            <div class="d-flex">
+                <p>
+                    <button class="btn btn-outline-primary rounded fw-bold me-3" @click="enoughAirtime(); show = !show">Projected airtime</button>
+                </p>
+                <div x-show="show">
+                    <p class="fw-bold bg-danger text-white pb-2 pt-2 pe-5 ps-5 rounded" :class="{ 'bg-danger': parseFloat(projectedAirtime.slice(1)) <= 0, 'bg-success': parseFloat(projectedAirtime.slice(1)) > 0 }" x-text="projectedAirtime"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-xxl bg-secondary card bg-gradient text-white p-3" style="width: 100%;">
+        <footer class="text-center pt-4">
+            <p>&copy; 2023 | All rights reserved | Moses Moletsane </p>
+            <div class="container">
+                <p>
+                    <i class="bi bi-geo-alt-fill text-white icons icon-link-hover"></i> 58 3rd Avenue, Westdene, Gauteng</p>
+                <p class="icons">
+                    <a href="https://wa.me/27734907149" target="_blank" class="text-white "><i class="bi bi-whatsapp hover "></i></a> &nbsp;&nbsp;
+                    <a href="https://t.me/MosesMoletsane" target="_blank" class="text-white icon-link-hover"><i class="bi bi-telegram"></i></a> &nbsp;&nbsp;
+                    <a href="mailto:mosesmoletsane17@gmail.com" class="text-white icon-link-hover"><i class="bi bi-envelope-fill"></i></a> &nbsp;&nbsp;
+                    <a href="https://www.linkedin.com/in/moses-moletsane-5b6aa3161/" target="_blank" class="text-white"><i class="bi bi-linkedin"></i></a>
+                </p>
+            </div>
+        </footer>
+    </div>
+
+</body>
+</html>
