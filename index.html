@@ -23,6 +23,8 @@
     }">
 
 <!-- Greet Function -->
+<div class="row">
+    <div class="col-md-6 border p-3 mt-3 bg-info-subtle rounded">
 <div x-data="greets()">
     <h1>Greet Function</h1>
     <hr>
@@ -75,10 +77,12 @@
       </template>
     </div>
 </div>
+</div>
 
 
 <!-- Transport Fee Function -->
-        <div class="mt-4 mb-4">
+<div class="col-md-6 border p-3 mt-3 rounded bg-primary-subtle">
+        <div class=" mb-4">
             <div x-data="{ 
                 shifts: '',
                  show: false,
@@ -116,7 +120,10 @@
                 </p>
             </div>
         </div>
-
+        </div>
+        </div>
+        <div class="row">
+<div class="col-md-6 border mb-3 mt-3 rounded bg-warning-subtle">
         <!-- Total Phone Bill Function -->
         <div class="mb-4">
             <div x-data="{ callSMS: '', totalCost: '', show: false }">
@@ -137,12 +144,13 @@
                 </div>
             </div>
         </div>
+        </div>
 
+        <div class="col-md-6 rounded border p-3 mb-3 bg-danger-subtle mt-3">
         <!-- The enough airtime Function -->
         <div x-data="{ cost: '', airtime: '', projectedAirtime: '', show: false }">
             <h1>Enough Airtime Function</h1>
-            <p>Input projected airtime use and current airtime balance</p>
-            <p>Input: <mark><em><u><b>calls, sms, data </u></mark></b></em></p>
+            <p>Input projected airtime use and current airtime balance. Input: <mark><em><u><b>calls, sms, data </u></mark></b></em></p>
             <hr>
             <div class="input-group mb-3">
                 <span class="input-group-text fw-bold bg-success-subtle">Projected usage:</span>
@@ -154,13 +162,15 @@
             </div>
             <div class="d-flex">
                 <p>
-                    <button class="btn btn-outline-primary rounded fw-bold me-3" @click="enoughAirtime(); show = !show">Projected airtime</button>
+                    <button class="btn btn-outline-primary rounded fw-bold me-3" @click="enoughAirtime(); show = !show">Show Projected airtime</button>
                 </p>
                 <div x-show="show">
                     <p class="fw-bold bg-danger text-white pb-2 pt-2 pe-5 ps-5 rounded" :class="{ 'bg-danger': parseFloat(projectedAirtime.slice(1)) <= 0, 'bg-success': parseFloat(projectedAirtime.slice(1)) > 0 }" x-text="projectedAirtime"></p>
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     </div>
 
     <div class="container-xxl bg-secondary card bg-gradient text-white p-3" style="width: 100%;">
