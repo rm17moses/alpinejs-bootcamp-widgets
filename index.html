@@ -79,15 +79,23 @@
 
 <!-- Transport Fee Function -->
         <div class="mt-4 mb-4">
-            <div x-data="{ shifts: '', show: false }">
+            <div x-data="{ 
+                shifts: '',
+                 show: false,
+
+                 getShift() {
+                   return transportFee(this.shifts);
+                 },
+                 }
+                 ">
                 <h1>Transport Fee Function</h1>
                 <hr>
                 <p class="me-3">
-                    <input type="radio" name="shift" value="morning" x-model="shifts" @click="show = !show">
+                    <input type="radio" name="shift" value="morning" x-model="shifts">
                     Morning Shift
                 </p>
                 <p class="mt-0 fw-bold bg-danger text-white p-2 rounded" x-show="shifts === 'morning'">
-                    Your transport cost is R20
+                    Your transport cost is <span x-text="getShift()"></span>
                 </p>
 
                 <p class="me-3">
@@ -96,7 +104,7 @@
                 </p>
                 
                 <p class="mt-0 fw-bold bg-warning p-2 rounded" x-show="shifts === 'afternoon'">
-                    Your transport cost is R10: Your work provides transport back home
+                    Your transport cost is <span x-text="getShift()"></span>: Your work provides transport back home
                 </p>
 
                 <p class="me-3">
@@ -104,7 +112,7 @@
                     Night Shift
                 </p>
                 <p class="mt-0 fw-bold bg-success text-white p-2 rounded" x-show="shifts === 'nightshift'">
-                    Your transport cost is Free: Your work provides transport from and to work
+                    Your transport cost is <span x-text="getShift()"></span>: Your work provides transport from and to work
                 </p>
             </div>
         </div>
