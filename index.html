@@ -27,7 +27,7 @@
     <h1>Greet Function</h1>
     <hr>
     <div class="input-group mb-3 col-sm">
-        <span class="input-group-text bg-dark-subtle fw-bold" id="basic-addon1">Enter your name</span>
+        <span class="input-group-text bg-dark-subtle fw-bold p-1" id="basic-addon1">Name</span>
         <input type="text" class="form-control" id="nameInput" x-model="name" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
             
         <!-- Create a dropdown menu for selecting the language -->
@@ -50,7 +50,7 @@
             <label for="floatingSelect">Select Language</label>
           </div>
           <!-- Create a button to trigger the displayGreeting function -->
-          <button class="btn btn-info" @click="setTimeout(() => displayGreeting(), 1500); showVerified = true; setTimeout(() => showVerified = false, 1500); setTimeout(() => showTitle = true, 2500)"> 
+          <button class="btn btn-info p-1 m-0" @click="setTimeout(() => displayGreeting(), 1500); showVerified = true; setTimeout(() => showVerified = false, 1500); setTimeout(() => showTitle = true, 2500)"> 
             <i class="bi bi-cursor-fill"></i> Greet</button>
           
     </div>
@@ -94,6 +94,7 @@
                     <input type="radio" name="shift" value="afternoon" x-model="shifts">
                     Afternoon Shift
                 </p>
+                
                 <p class="mt-0 fw-bold bg-warning p-2 rounded" x-show="shifts === 'afternoon'">
                     Your transport cost is R10: Your work provides transport back home
                 </p>
